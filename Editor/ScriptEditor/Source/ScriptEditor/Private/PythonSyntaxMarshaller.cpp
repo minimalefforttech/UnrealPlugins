@@ -19,6 +19,7 @@ const TCHAR* Keywords[] =
 	TEXT("from"),
 	TEXT("import"),
 	TEXT("as"),
+	TEXT("in"),
 	TEXT("with"),
 	TEXT("await"),
 	TEXT("break"),

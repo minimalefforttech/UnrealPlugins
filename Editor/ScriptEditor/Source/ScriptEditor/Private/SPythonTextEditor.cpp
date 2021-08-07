@@ -87,6 +87,7 @@ FReply SPythonTextEditor::OnKeyChar( const FGeometry& MyGeometry,const FCharacte
 	default:
 		break;
 	}
+	// Uncomment this if you want to display the key character code being pressed
 	// UE_LOG(LogTemp, Display, TEXT("KEY: %d"), Character );
 	return Super::OnKeyChar(MyGeometry, InCharacterEvent);
 }
@@ -344,7 +345,6 @@ TSharedPtr<SWidget> SPythonTextEditor::BuildContextMenuContent() const
 	}
 
 	return MenuBuilder.MakeWidget();
-	return EditableTextLayout->BuildDefaultContextMenu(MenuExtender);
 }
 
 bool SPythonTextEditor::GetSuggestionText( FString* OutObjectString, FString* OutPartialString )

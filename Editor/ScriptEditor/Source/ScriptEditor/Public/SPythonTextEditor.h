@@ -11,10 +11,8 @@ class ITextLayoutMarshaller;
 class SPythonTextEditor : public SMultiLineEditableText
 {
 public:
-	// DECLARE_DELEGATE_OneParam(FOnAutoCompleteRequested, const FString& /*Text*/);
 	DECLARE_DELEGATE_TwoParams(FOnExecuteTriggered, const FString& /*Text*/, bool /*LogOutput*/);
 	DECLARE_DELEGATE_OneParam(FOnDocumentationRequested, const FString& /*Text*/);
-
 
 	SLATE_BEGIN_ARGS(SPythonTextEditor) {}
 		/** The initial text that will appear in the widget. */
@@ -34,12 +32,16 @@ public:
 
 		/** Emitted when Ctrl+Space is pressed */
 		SLATE_EVENT(FSimpleDelegate, OnAutoCompleteRequested)
+
+		/** Emitted when Enter or Right is pressed with completer shown */
 		SLATE_EVENT(FSimpleDelegate, OnHideAutoCompleteRequested)
 		
 		/** Emitted when Enter is pressed with completer shown */
 		SLATE_EVENT(FSimpleDelegate, OnAcceptCompleter)
+
 		/** Emitted when Up arrow is pressed with completer shown */
 		SLATE_EVENT(FSimpleDelegate, OnCompleterNavUpRequested)
+
 		/** Emitted when Down arrow is pressed with completer shown */
 		SLATE_EVENT(FSimpleDelegate, OnCompleterNavDownRequested)
 
@@ -72,7 +74,7 @@ private:
 	FString GetPreceedingWhitespace( const FString& Line ) const;
 	void IndentLine( uint32 LineNumber );
 	int32 UnIndentLine( uint32 LineNumber, const FString& Line );
-	
+
 	TSharedPtr<FUICommandList> UICommandList;
 	TSharedPtr<class FPythonSyntaxMarshaller> RichTextMarshaller;
 	typedef SMultiLineEditableText Super;
